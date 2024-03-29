@@ -1,0 +1,598 @@
+/*==================================================================
+    .btn
+===================================================================*/
+.btn {
+  position: relative;
+  padding: 0 1em;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  // 高さの定義
+  &.-lhl {
+    height: 75px;
+  }
+  &.-lhm {
+    height: 60px;
+  }
+  &.-lhs {
+    height: 40px;
+  }
+  &.-lhxs {
+    height: 30px;
+  }
+  // フォントサイズの定義
+  &.-fsm {
+    font-size: 1.6rem;
+  }
+  &.-fsl {
+    font-size: 1.8rem;
+  }
+  &.-fss {
+    flex-flow: column nowrap;
+    font-size: 1.3rem;
+  }
+  // 幅の定義
+  &.-auto {
+    width: auto !important;
+  }
+  // attributeのdisabled
+  &:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  //
+  &.-check {
+    .icon {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      &::before {
+        display: block;
+        content: "";
+        width: 24px;
+        height: 17px;
+        background-image: url(../img/common/icon_btn_check.svg);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        margin-right: 0.8em;
+      }
+    }
+  }
+  &.-cancel {
+    .icon {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      &::before {
+        display: block;
+        content: "";
+        width: 23px;
+        height: 23px;
+        background-image: url(../img/common/icon_btn_cross.svg);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        margin-right: 0.8em;
+      }
+    }
+  }
+  &.-right-arrow {
+    &::before {
+      display: block;
+      content: "";
+      width: 20px;
+      height: 3px;
+      background-image: url(../img/common/icon-arrow-right_black04.svg);
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  &.-csv {
+    i {
+      background-image: url(../img/common/icon-arrow-right_white01.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 14px;
+      height: 14px;
+      display: block;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      padding-left: 10px;
+      &.logout {
+        background-image: url(../img/common/icon-logout.svg);
+      }
+    }
+  }
+  &.-back {
+    background-color: $g1 !important;
+  }
+  &.c1 {
+    background-color: #667b9f;
+  }
+
+
+  i {
+    margin-right: 8px;
+    &.icon {
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      width: 20px;
+      height: 20px;
+      display: block;
+      z-index: 2;
+      margin-right: 5px;
+    }
+    // アイコンサイズ定義
+    &.i {
+      &-10 {
+        width: 10px;
+      }
+      &-15 {
+        width: 15px;
+      }
+      &-30 {
+        width: 30px;
+      }
+      &-40 {
+        width: 40px;
+      }
+    }
+    // アイコン種別定義
+    &.i {
+      &-csv {
+        background-image: url(../img/common/icon-excel-white.svg);
+      }
+      &-plusmark {
+        background-image: url(../img/common/icon-plusmark-white.svg);
+      }
+      &-pencil {
+        background-image: url(../img/common/icon-pencil-white.svg);
+      }
+      &-delete {
+        background-image: url(../img/common/icon-delete-white.svg);
+      }
+      &-info {
+        background-image: url(../img/common/icon-detail-white.svg);
+      }
+      &-add {
+        background-image: url(../img/common/icon-add-white.svg);
+      }
+      &-checkmark {
+        background-image: url(../img/common/icon-checkmark-white.svg);
+      }
+      &-cancel {
+        background-image: url(../img/common/icon-cancel-white.svg);
+      }
+    }
+    // リバースボタンのアイコン種別定義
+    &.-rev.i {
+      &-csv {
+        background-image: url(../img/common/icon-excel-dark.svg);
+      }
+      &-plusmark {
+        background-image: url(../img/common/icon-plusmark-dark.svg);
+      }
+      &-pencil {
+        background-image: url(../img/common/icon-pencil-dark.svg);
+      }
+      &-delete {
+        background-image: url(../img/common/icon-delete-dark.svg);
+      }
+      &-info {
+        background-image: url(../img/common/icon-detail-dark.svg);
+      }
+      &-add {
+        background-image: url(../img/common/icon-add-dark.svg);
+      }
+      &-checkmark {
+        background-image: url(../img/common/icon-checkmark-dark.svg);
+      }
+      &-cancel {
+        background-image: url(../img/common/icon-cancel-dark.svg);
+      }
+    }
+    // ホバー時も白使いたいとき
+    &.-w.i {
+      &-csv {
+        background-image: url(../img/common/icon-excel-white.svg);
+      }
+      &-plusmark {
+        background-image: url(../img/common/icon-plusmark-white.svg);
+      }
+      &-pencil {
+        background-image: url(../img/common/icon-pencil-white.svg);
+      }
+      &-delete {
+        background-image: url(../img/common/icon-delete-white.svg);
+      }
+      &-info {
+        background-image: url(../img/common/icon-detail-white.svg);
+      }
+      &-add {
+        background-image: url(../img/common/icon-add-white.svg);
+      }
+      &-checkmark {
+        background-image: url(../img/common/icon-checkmark-white.svg);
+      }
+      &-cancel {
+        background-image: url(../img/common/icon-cancel-white.svg);
+      }
+    }
+    // ホバー時も黒使いたいとき
+    &.-k.i {
+      &-csv {
+        background-image: url(../img/common/icon-excel-dark.svg);
+      }
+      &-plusmark {
+        background-image: url(../img/common/icon-plusmark-dark.svg);
+      }
+      &-pencil {
+        background-image: url(../img/common/icon-pencil-dark.svg);
+      }
+      &-delete {
+        background-image: url(../img/common/icon-delete-dark.svg);
+      }
+      &-info {
+        background-image: url(../img/common/icon-detail-dark.svg);
+      }
+      &-add {
+        background-image: url(../img/common/icon-add-dark.svg);
+      }
+      &-checkmark {
+        background-image: url(../img/common/icon-checkmark-dark.svg);
+      }
+      &-cancel {
+        background-image: url(../img/common/icon-cancel-dark.svg);
+      }
+    }
+  }
+
+  // アイコンのホバースタイル
+  &:hover {
+    i {
+      &.i {
+        &-csv {
+          background-image: url(../img/common/icon-excel-dark.svg);
+        }
+        &-plusmark {
+          background-image: url(../img/common/icon-plusmark-dark.svg);
+        }
+        &-pencil {
+          background-image: url(../img/common/icon-pencil-dark.svg);
+        }
+        &-delete {
+          background-image: url(../img/common/icon-delete-dark.svg);
+        }
+        &-info {
+          background-image: url(../img/common/icon-detail-dark.svg);
+        }
+        &-add {
+          background-image: url(../img/common/icon-add-dark.svg);
+        }
+        &-checkmark {
+          background-image: url(../img/common/icon-checkmark-dark.svg);
+        }
+        &-cancel {
+          background-image: url(../img/common/icon-cancel-dark.svg);
+        }
+      }
+      // リバースボタンのアイコン種別定義＠ホバー
+      &.-rev.i {
+        &-csv {
+          background-image: url(../img/common/icon-excel-white.svg);
+        }
+        &-plusmark {
+          background-image: url(../img/common/icon-plusmark-white.svg);
+        }
+        &-pencil {
+          background-image: url(../img/common/icon-pencil-white.svg);
+        }
+        &-delete {
+          background-image: url(../img/common/icon-delete-white.svg);
+        }
+        &-info {
+          background-image: url(../img/common/icon-detail-white.svg);
+        }
+        &-add {
+          background-image: url(../img/common/icon-add-white.svg);
+        }
+        &-checkmark {
+          background-image: url(../img/common/icon-checkmark-white.svg);
+        }
+        &-cancel {
+          background-image: url(../img/common/icon-cancel-white.svg);
+        }
+      }
+      // ホバー時も白使いたいとき
+      &.-w.i {
+        &-csv {
+          background-image: url(../img/common/icon-excel-white.svg);
+        }
+        &-plusmark {
+          background-image: url(../img/common/icon-plusmark-white.svg);
+        }
+        &-pencil {
+          background-image: url(../img/common/icon-pencil-white.svg);
+        }
+        &-delete {
+          background-image: url(../img/common/icon-delete-white.svg);
+        }
+        &-info {
+          background-image: url(../img/common/icon-detail-white.svg);
+        }
+        &-add {
+          background-image: url(../img/common/icon-add-white.svg);
+        }
+        &-checkmark {
+          background-image: url(../img/common/icon-checkmark-white.svg);
+        }
+        &-cancel {
+          background-image: url(../img/common/icon-cancel-white.svg);
+        }
+      }
+      // ホバー時も黒使いたいとき
+      &.-k.i {
+        &-csv {
+          background-image: url(../img/common/icon-excel-dark.svg);
+        }
+        &-plusmark {
+          background-image: url(../img/common/icon-plusmark-dark.svg);
+        }
+        &-pencil {
+          background-image: url(../img/common/icon-pencil-dark.svg);
+        }
+        &-delete {
+          background-image: url(../img/common/icon-delete-dark.svg);
+        }
+        &-info {
+          background-image: url(../img/common/icon-detail-dark.svg);
+        }
+        &-add {
+          background-image: url(../img/common/icon-add-dark.svg);
+        }
+        &-checkmark {
+          background-image: url(../img/common/icon-checkmark-dark.svg);
+        }
+        &-cancel {
+          background-image: url(../img/common/icon-cancel-dark.svg);
+        }
+      }
+    }
+  }
+}
+
+
+
+.editing .btn {
+  max-width: 90px;
+}
+
+.editing .flex {
+  justify-content: center;
+}
+
+// ログイン系・英語
+.btn01 {
+  color: $w;
+  font-size: 1.5rem;
+  background-color: $c1;
+  font-weight: 500;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: $transition;
+  &:hover {
+    background-color: #45738d;
+  }
+}
+
+.btn02 {
+  color: $w;
+  font-size: 1.4rem;
+  background: transparent;
+  padding: 0 1.5em;
+  border: 1px solid $c1;
+  position: relative;
+  z-index: 1;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: $c1;
+    transform-origin: 100% 50%;
+    transform: scaleX(1);
+    transition: transform ease 0.3s;
+  }
+  &:hover {
+    color: $c1;
+    &::before {
+      transform-origin: 100% 50%;
+      transform: scaleX(0);
+    }
+  }
+
+  // 反転
+  &.-rev {
+    color: $c1;
+    background: transparent;
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: $c1;
+      transform-origin: 0% 50%;
+      transform: scaleX(0);
+      transition: transform ease 0.3s;
+    }
+    &:hover {
+      color: $w;
+      &::before {
+        transform-origin: 0% 50%;
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+
+
+.btn03 {
+  color: $w;
+  font-size: 1.3rem;
+  font-weight: 500;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 2px;
+  transition: $transition;
+  padding: 0em 0.4em;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.btn04 {
+  display: block;
+  width: 100%;
+  background: linear-gradient(to right, #000d83 0%, #4698e0 100%);
+  color: $w;
+  transition: $transition;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+}
+
+// テキストリンク風
+.btn05 {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: $transition;
+  outline: none;
+  border: none;
+  text-align: center;
+  position: relative;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+
+
+
+
+
+.modal-confirmation {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  li {
+    margin-right: 15px;
+    width: 120px;
+    &:last-child {
+      margin-right: 0;
+    }
+    button {
+      width: 100%;
+    }
+  }
+}
+
+.btn-cancel {
+  background-color: #ee6666;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: bold;
+  transition: $transition;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.btn-done {
+  background-color: #57be62;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: bold;
+  transition: $transition;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.btn-transparent {
+  background-color: transparent;
+  color: $k;
+  font-weight: bold;
+  transition: $transition;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.btn {
+  &-dark {
+    background-color: $c1;
+  }
+  &-red {
+    background-color: #d40000;
+  }
+  &-darkblue {
+    background-color: #236aa3;
+  }
+  &-green {
+    background-color: #318937;
+  }
+  &-gray {
+    background-color: #9f9f9f;
+  }
+  &-smorkyblue {
+    background-color: #00b8d4;
+  }
+  &-bluegray {
+    background-color: #70859e;
+  }
+}
+
+.action-btn-panel {
+  margin: 40px auto;
+  width: 100%;
+  max-width: 630px;
+  ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    li {
+      padding: 0 15px;
+      width: 50%;
+    }
+  }
+}

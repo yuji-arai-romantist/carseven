@@ -1,0 +1,106 @@
+@charset "utf-8";
+//  style.scss
+//  1 setting : variables mixin reset utility
+//  2 module : element block animation
+//  3 pages : pageID
+/*==================================================================
+    style.css
+===================================================================*/
+// -----------------------------------------------
+//  設定(setting)
+//------------------------------------------------
+// 変数
+@import "setting/variables";
+// mixin
+@import "setting/mixin";
+// reset
+//@import "setting/reset";
+// utility
+@import "setting/utility";
+
+// -----------------------------------------------
+//  jQuery
+//------------------------------------------------
+// @import "module/library/slick-theme";
+// @import "module/library/slick";
+
+// -----------------------------------------------
+// 共通パーツ(module)
+//------------------------------------------------
+//  element
+//--------------------------------
+// general - 基本設定
+//@import "module/element/general";
+// @import "module/element/fontawesome";
+
+// layout
+@import "module/element/layout";
+
+//form
+@import "module/element/form";
+
+// heading
+//@import "module/element/headline";
+
+//btn
+@import "module/element/btn";
+
+//table
+//@import "module/element/tbl";
+
+//list
+//@import "module/element/li";
+
+//other
+//@import "module/element/pagination";
+
+// block
+//--------------------------------
+//header
+//@import "module/block/header";
+
+//header
+//@import "module/block/nav";
+
+//footer
+@import "module/block/footer";
+
+//mainview
+//@import "module/block/mainView";
+
+//modal
+@import "module/block/modal";
+
+//pankuz
+// @import "module/block/pankuz";
+
+//bnr-area
+// @import "module/block/bnr";
+
+//mask
+//@import "module/block/mask";
+
+//  animation
+//--------------------------------
+//@import "module/animation/animation";
+///@import "module/animation/origin";
+
+//@import "module/animation/fadeIn";
+//@import "module/animation/fadeInUp";
+
+//@import "module/animation/lineDraw";
+//@import "module/animation/moveline";
+
+//@import "module/animation/bounce";
+//@import "module/animation/bounceInUp";
+//@import "module/animation/popInUp.scss";
+
+//@import "module/animation/flash";
+//@import "module/animation/headShake";
+//@import "module/animation/tada";
+
+//@import "module/animation/custom";
+
+// -----------------------------------------------
+//  ページごとの設定(pages)
+//------------------------------------------------

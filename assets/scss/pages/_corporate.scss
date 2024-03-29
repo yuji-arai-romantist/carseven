@@ -1,0 +1,15 @@
+#corporate {
+  background-color: #fbfbfb;
+}
+
+@keyframes userbox-fadein {
+  from {
+    opacity: 0;
+    transform: translateY(0px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-55px);
+  }
+}

@@ -1,0 +1,50 @@
+/*==================================================================
+    animation
+===================================================================*/
+/*  setting
+---------------------------------------------*/
+//opacityはkeyframe内で記述
+.animate {
+    visibility: hidden;
+    transition: $transition;
+    animation-duration: 1500ms;
+    animation-fill-mode: both;
+}
+.animate.animated {
+    visibility: visible;
+}
+//infinite
+.aInfinite {
+    animation-iteration-count: infinite;
+}
+//GPU処理を追加してスマホでアニメーション処理を早める
+.aEx {
+    transform: translate3d(0, 0, 0);
+}
+
+/*  duration
+---------------------------------------------*/
+$animateDuration: true !default; //true false で切り替え
+$animateDurationValue: 50 !default; //5.0sまで
+
+@if $animateDuration {
+    @for $i from 0 through $animateDurationValue {
+        .a#{$i * 1} {
+            animation-duration: 0.1s * $i;
+            animation-fill-mode: both;
+        }
+    }
+}
+
+/*  delay
+---------------------------------------------*/
+$animateDelay: true !default; //true false で切り替え
+$animateDelayValue: 50 !default; //5.0まで
+
+@if $animateDelay {
+    @for $i from 0 through $animateDelayValue {
+        .aD#{$i * 1} {
+            animation-delay: 0.1s * $i;
+        }
+    }
+}

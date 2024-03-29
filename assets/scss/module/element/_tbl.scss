@@ -1,0 +1,826 @@
+// テーブル基本形
+.table-basic {
+  width: 100%;
+  &.cursor {
+    tr {
+      cursor: pointer;
+    }
+  }
+  &.nohover {
+    tbody {
+      tr:hover {
+        background-color: $w !important;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      position: relative;
+      transition: $transition;
+      &:nth-child(odd) {
+        background-color: #fff;
+        &:not(.table-manipulation):hover {
+          background-color: #f9fdfe;
+        }
+      }
+      &:nth-child(even) {
+        background-color: #f9f9f9;
+        &:not(.table-manipulation):hover {
+          background-color: #f9fdfe;
+        }
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgba($color: #000, $alpha: 0.1);
+      }
+      &:first-of-type {
+        border-top: 1px solid rgba($color: #000, $alpha: 0.1);
+      }
+      &.table-manipulation {
+        background-color: $w;
+      }
+      &:not(.table-manipulation) {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid rgba($color: #fff, $alpha: 0.1);
+      line-height: 1.4;
+    }
+    th {
+      width: 140px;
+      font-size: 1.3rem;
+    }
+    td.button {
+      display: flex;
+      justify-content: center;
+    }
+    td.notice-cell {
+      white-space: unset;
+      min-width: 320px;
+      text-align: left;
+      font-size: 1.3rem;
+    }
+    td.fee {
+      text-align: right;
+      &::after {
+        content: '千円';
+        padding-left: 1px;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  thead {
+    th {
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+  &-overflow {
+    overflow-x: scroll;
+    table {
+      th, td {
+        white-space: nowrap;
+        text-align: center;
+        padding: 10px 15px;
+      }
+      &.manipulation {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &.-fss {
+    &>* {
+      font-size: 1.3rem;
+    }
+  }
+
+  .adjustline {
+    td {
+      height: 50px;
+      border: none;
+    }
+  }
+
+  &.jobsummary {
+    margin-bottom: 30px;
+    tbody, thead {
+      th {
+        width: auto;
+      }
+    }
+    .btn {
+      width: 70px;
+    }
+  }
+
+  .resignation {
+    background-color: #fbf3f3 !important;
+    display: none;
+    &.active {
+      display: table-row;
+    }
+  }
+
+  .thead {
+    &-compact {
+      th {
+        padding: 3px 15px;
+        background-color: #f0f0f0;
+      }
+    }
+  }
+}
+
+
+// 詳細ページの概要系
+.table-detail {
+  width: 100%;
+  tbody {
+    tr {
+      position: relative;
+      transition: $transition;
+      // &:nth-child(odd) {
+      //   background-color: #fff;
+      //   &:not(.table-manipulation):hover {
+      //     background-color: #f9fdfe;
+      //   }
+      // }
+      // &:nth-child(even) {
+      //   background-color: #f9f9f9;
+      //   &:not(.table-manipulation):hover {
+      //     background-color: #f9fdfe;
+      //   }
+      // }
+      // &::after {
+      //   content: '';
+      //   position: absolute;
+      //   bottom: 0;
+      //   left: 0;
+      //   width: 100%;
+      //   height: 1px;
+      //   background-color: rgba($color: #000, $alpha: 0.1);
+      // }
+      // &:first-of-type {
+      //   border-top: 1px solid rgba($color: #000, $alpha: 0.1);
+      // }
+      // &.table-manipulation {
+      //   background-color: $w;
+      // }
+      // &:not(.table-manipulation) {
+      //   &:hover {
+      //     cursor: pointer;
+      //   }
+      // }
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid rgba($color: #000000, $alpha: 0.1);
+      line-height: 1.4;
+    }
+    th {
+      width: 140px;
+      font-size: 1.2rem;
+      text-align: right;
+      font-weight: 500;
+      background-color: #f9f9f9;
+    }
+    td.fee {
+      text-align: right;
+      &::after {
+        content: '千円';
+        padding-left: 1px;
+        font-size: 1.2rem;
+      }
+    }
+    td.per {
+      text-align: right;
+      &::after {
+        content: '%';
+        padding-left: 1px;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.table-profit {
+  width: 100%;
+  tbody {
+    tr {
+      position: relative;
+      transition: $transition;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid rgba($color: #000000, $alpha: 0.1);
+      line-height: 1.4;
+    }
+    th {
+      width: 25%;
+      font-size: 1.3rem;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    td.fee {
+      text-align: right;
+      font-family: $font2;
+      font-size: 2rem;
+      &::after {
+        content: '千円';
+        padding-left: 1px;
+        font-size: 1.2rem;
+      }
+    }
+    td.per {
+      text-align: right;
+      font-family: $font2;
+      font-size: 2rem;
+      &::after {
+        content: '%';
+        padding-left: 1px;
+        font-size: 1.2rem;
+      }
+    }
+  }
+  &.-fifth {
+    tbody th {
+      width: 20%;
+      @include mq(tb) {
+        width: calc(100% / 3);
+        &:nth-child(4), &:nth-child(5) {
+          width: 50%;
+        }
+      }
+    }
+  }
+
+  thead {
+    th {
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+}
+
+
+.table-api {
+  width: 100%;
+  tbody {
+    tr {
+      position: relative;
+      transition: $transition;
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid rgba($color: #000000, $alpha: 0.1);
+      line-height: 1.4;
+      font-size: 1.3rem;
+    }
+    th {
+      width: calc((100% - 40px / 3));
+      font-size: 1.3rem;
+      text-align: center;
+      background-color: #f9f9f9;
+      &:first-child {
+        width: 40px;
+      }
+    }
+    .radio {
+      margin-right: 0 !important;
+      margin-bottom: 0 !important;
+      &::before {
+        margin-right: 0 !important;
+        top: unset !important;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+        top: unset;
+      }
+    }
+    .choice {
+      text-align: center;
+    }
+  }
+}
+
+
+
+
+// テーブル情報編集系
+.table-editable {
+  width: 100%;
+  tbody {
+    tr {
+      position: relative;
+    }
+    th, td {
+      padding: 10px;
+      line-height: 1.4;
+    }
+    th {
+      width: 140px;
+      font-size: 1.3rem;
+    }
+    td.button {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+
+#table {
+  &-usagesummary {
+    th {
+      width: 200px;
+    }
+  }
+
+  &-usermanage {
+    td {
+      text-align: center;
+    }
+  }
+}
+
+
+// テーブル予実
+.table-badget {
+  width: 100%;
+  font-family: "Roboto", "Noto Sans JP", sans-serif;
+  &-overflow {
+    // overflow-x: scroll;
+    table {
+      th, td {
+        white-space: nowrap;
+        text-align: center;
+      }
+      &.manipulation {
+        margin-bottom: 20px;
+      }
+    }
+    td, th {
+      &.c1 {
+        background-color: #83a4ba;
+      }
+      &.c2 {
+        background-color: #918c8c;
+      }
+      &.c3 {
+        background-color: #a0b9ba;
+      }
+      &.c4 {
+        background-color: #b09090;
+      }
+      &.c5 {
+        background-color: #c1c4bd;
+      }
+      &.c6 {
+        background-color: #a1aab3;
+      }
+      &.c7 {
+        background-color: #a1aab3;
+      }
+
+      &.c1a {
+        background-color: rgba($color: #83a4ba, $alpha: 0.2);
+      }
+      &.c2a {
+        background-color: rgba($color: #918c8c, $alpha: 0.2);
+      }
+      &.c3a {
+        background-color: rgba($color: #a0b9ba, $alpha: 0.2);
+      }
+      &.c4a {
+        background-color: rgba($color: #b09090, $alpha: 0.2);
+      }
+      &.c5a {
+        background-color: rgba($color: #c1c4bd, $alpha: 0.2);
+      }
+      &.c6a {
+        background-color: rgba($color: #a1aab3, $alpha: 0.2);
+      }
+      &.c7a {
+        background-color: rgba($color: #a1aab3, $alpha: 0.2);
+      }
+    }
+  }
+
+  &>* {
+    font-size: 1.3rem;
+  }
+
+  thead {
+    tr {
+      &.child {
+        th {
+          min-width: 80px;
+
+        }
+      }
+      &.merged {
+        th {}
+      }
+    }
+    th {
+      font-size: 1.4rem;
+      text-align: center;
+      padding: 8px 6px;
+      border: 1px solid rgba($color: #000, $alpha: 0.2);
+      color: $w;
+      &.sticky {
+        position: sticky;
+        left: 0;
+        z-index: 5;
+      }
+    }
+  }
+
+  tbody {
+    // 期と月別のテーブル間のマージンを疑似表現
+    position: relative;
+    border-bottom: 10px solid $w;
+    &::after, &::before {
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: #000;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+    // --
+
+    th, td {
+      padding: 6px;
+      border: 1px solid rgba($color: #000, $alpha: 0.2);
+      min-width: 80px;
+    }
+    th {
+      &.sticky {
+        position: sticky;
+        left: 0;
+        z-index: 5;
+        background: #fff;
+      }
+      .rank {
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+        background-color: #495d5e;
+        color: $w;
+        display: inline-block;
+        border-radius: 50%;
+        line-height: 18px;
+        text-align: center;
+        font-style: normal;
+        font-family: "Roboto", "Noto Sans JP", sans-serif;
+        font-size: 1.1rem;
+        font-weight: bold;
+        &.minus {
+          background-color: #e55959;
+        }
+      }
+    }
+    &.crosscell {
+      // 色の交互設定
+      td {
+        &:nth-child(6n + 5),
+        &:nth-child(6n + 6),
+        &:nth-child(6n + 7) {
+          background-color: #f2f9fc;
+        }
+      }
+    }
+    td {
+      text-align: right;
+    }
+  }
+}
+
+
+// 予実の全体用
+.table-badget-01 {
+  width: 100%;
+  overflow: auto;
+  display: block;
+  position: relative;
+  padding-bottom: 20px;
+
+  thead {
+    tr {
+      &.child {
+        th {
+          min-width: 80px;
+
+        }
+      }
+      &.merged {
+        th {}
+      }
+    }
+    th {
+      background-color: #83a4ba;
+      &.sticky {
+        background-color: #fff;
+        color: unset;
+      }
+    }
+  }
+}
+
+
+// 予実のR担当別用
+// 予実のAE担当別用
+.table-badget-02 {
+  width: 100%;
+  overflow: auto;
+  display: block;
+  position: relative;
+  padding-bottom: 20px;
+
+  thead {
+    tr {
+      &.child {
+        th {
+          min-width: 80px;
+        }
+      }
+      &.merged {
+        th {}
+      }
+    }
+    th {
+      background-color: #83a4ba;
+      border: 1px solid rgba($color: #000, $alpha: 0.2);
+      &.sticky {
+        background-color: #fff;
+        color: unset;
+      }
+    }
+  }
+
+  tbody {
+    &:first-of-type::before {
+      content: '';
+      width: 100%;
+      height: 5px;
+      display: none;
+    }
+    // 色の交互設定
+    // td {
+    //   &:nth-child(6n + 5),
+    //   &:nth-child(6n + 6),
+    //   &:nth-child(6n + 7) {
+    //     background-color: #f2f9fc;
+    //   }
+    // }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 予実のクライアント月別
+.table-badget-03 {
+  width: 100%;
+  overflow: auto;
+  display: block;
+  position: relative;
+  padding-bottom: 20px;
+
+  thead {
+    tr {
+      &.child {
+        th {
+          min-width: 80px;
+        }
+      }
+      &.merged {
+        th {}
+      }
+    }
+    th {
+      background-color: #83a4ba;
+      &.sticky {
+        background-color: #83a4ba;
+      }
+      &.w {
+        color: $k;
+        background-color: $w !important;
+        border: 1px solid rgba($color: #000, $alpha: 0.2);
+      }
+    }
+  }
+
+  tbody {
+    &:first-of-type::before {
+      content: '';
+      width: 100%;
+      height: 5px;
+      display: none;
+    }
+    .cli {
+      text-align: right;
+      padding: 6px 12px;
+    }
+  }
+}
+
+
+// 予実のクライアント月別＆昨対別用
+.table-badget-04 {
+  width: 100%;
+  overflow: auto;
+  display: block;
+  position: relative;
+  padding-bottom: 20px;
+
+  thead {
+    tr {
+      &.child {
+        th {
+          min-width: 80px;
+          color: inherit;
+        }
+      }
+      &.merged {
+        th {}
+      }
+    }
+    th {
+      &.sticky {}
+      &.w {
+        color: $k;
+        background-color: $w !important;
+        border: 1px solid rgba($color: #000, $alpha: 0.2);
+      }
+      &.adj {
+        border: none;
+        min-width: 20px !important;
+      }
+    }
+  }
+
+  tbody {
+    &:first-of-type::before {
+      content: '';
+      width: 100%;
+      height: 5px;
+      display: none;
+    }
+    // 色の交互設定
+    td {}
+    .cli {
+      text-align: left;
+      padding: 6px 12px 6px 6px;
+    }
+    .adj {
+      border: none;
+      min-width: 10px !important;
+    }
+  }
+}
+
+
+// 予実のクライアント月別＆昨対別用
+.table-badget-05 {
+  width: 100%;
+  display: block;
+  position: relative;
+  padding-bottom: 20px;
+
+  thead {
+    tr {
+      &.child {
+        th {
+          min-width: 80px;
+          color: inherit;
+        }
+      }
+      &.merged {
+        th {}
+      }
+      &.clear {
+        th {
+          background-color: $w;
+          border: none;
+          color: inherit;
+        }
+      }
+      &.teaminfo {
+        height: 42px;
+        &>* {
+          font-size: 1.6rem;
+        }
+      }
+    }
+    th {
+      &.w {
+        color: $k;
+        background-color: $w !important;
+        border: 1px solid rgba($color: #000, $alpha: 0.2);
+      }
+      &.adj {
+        border: none;
+        min-width: 20px !important;
+      }
+    }
+  }
+
+  tbody {
+    border-bottom: none;
+    &::before {
+      content: '';
+      width: 100%;
+      height: 5px;
+      display: none;
+    }
+    &::after {
+      display: none;
+    }
+    &.member {
+      th, td {
+        height: 30px;
+        font-size: 1.5rem;
+      }
+    }
+
+    .cli {
+      text-align: left;
+      padding: 6px 12px 6px 6px;
+    }
+    .adj {
+      border: none;
+      min-width: 10px !important;
+    }
+    .level {
+      min-width: unset !important;
+      width: 40px;
+    }
+    .client {
+      min-width: 300px;
+      text-align: left;
+    }
+
+  }
+
+
+  tbody.list {
+    position: relative;
+    .addbutton {
+      position: absolute;
+      right: -25px;
+      bottom: 3px;
+      display: block;
+      background-color: #729b7c;
+      color: $w;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      font-style: normal;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .updateline {
+      th,td {
+        height: 26px;
+      }
+      input {
+        padding: 0 !important;
+        font-size: 1.3rem !important;
+        min-height: unset;
+        min-width: 80px;
+        border: none;
+      }
+    }
+  }
+}

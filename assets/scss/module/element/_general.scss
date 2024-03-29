@@ -1,0 +1,190 @@
+/*==================================================================
+    general
+===================================================================*/
+/* -----------------------------------------------
+    font
+------------------------------------------------*/
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: $fzM;
+  color: $g2;
+  font-weight: 400;
+  line-height: 1;
+  font-feature-settings: "palt" 1; //OTFフォントのプロポーショナルメトリクスを有効 ※一部適用不可
+  font-kerning: normal; //カーニング
+  text-rendering: optimizeLegibility; //アンチエイリアス処理、組み込みのフォントヒンティングの片方あるいは両方(カーニング)を行う
+  -webkit-font-smoothing: antialiased; //アンチエイリアス ※ 日本語だとぼやけることもあり。
+  // background-color: #343541;
+  //sp
+  @include mq() {
+    font-size: $fzM--sp;
+    line-height: 1;
+  }
+  &.white {
+    background-color: $w;
+    color: $k;
+  }
+}
+
+html {
+  position: relative;
+}
+
+::placeholder {
+  color: #b8b8b8;
+}
+//"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体"
+// "游明朝体", "Yu Mincho", YuMincho
+//'Hiragino sans','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro'
+//'メイリオ','Meiryo'
+
+// @font-face {
+//   font-family: "Noto Sans JP";
+//   font-style: normal;
+//   font-weight: 700;
+//   src: url("../fonts/NotoSansJP-Bold.woff") format("woff");
+//   font-display: swap;
+// }
+
+// @font-face {
+//   font-family: "Noto Sans JP";
+//   font-style: normal;
+//   font-weight: 500;
+//   src: url("../fonts/NotoSansJP-Medium.woff") format("woff");
+//   font-display: swap;
+// }
+
+// @font-face {
+//   font-family: "Noto Sans JP";
+//   font-style: normal;
+//   font-weight: 400;
+//   src: url("../fonts/NotoSansJP-Regular.woff") format("woff");
+//   font-display: swap;
+// }
+
+// @font-face {
+//   font-family: "Noto Sans JP";
+//   font-style: normal;
+//   font-weight: 300;
+//   src: url("../fonts/NotoSansJP-Light.woff") format("woff");
+//   font-display: swap;
+// }
+
+// @font-face {
+//   font-family: "Noto Serif JP Partial";
+//   font-style: normal;
+//   font-weight: 500;
+//   src: url("../fonts/NotoSerifJP-Medium-Partial.woff") format("woff");
+//   font-display: swap;
+// }
+
+/* -----------------------------------------------
+    p
+------------------------------------------------*/
+p {
+  font-size: $fz;
+  line-height: $lh;
+
+  //sp
+  @include mq() {
+    font-size: $fz--sp;
+    line-height: $lh;
+  }
+}
+
+/* ======= hiwrite ======= */
+::selection {
+  background: #ededed;
+}
+
+/* ======= テキストの下線スタイル ======= */
+.underHiwrite {
+  position: relative;
+  z-index: 1;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 20%;
+    background-color: #ff0;
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    z-index: -1;
+  }
+}
+
+/* ======= 上付き文字、下付き文字 ======= */
+.supText {
+  font-size: 75.5%;
+  vertical-align: top;
+  position: relative;
+  top: -0.1em;
+}
+
+.subText {
+  font-size: 75.5%;
+  vertical-align: bottom;
+  position: relative;
+  top: 0.1em;
+}
+
+/* ======= 注釈 ======= */
+.annotation {
+  font-size: 1.1rem !important;
+  @include mq() {
+    font-size: 1.0rem !important;
+  }
+  &.-w {
+    color: $w;
+  }
+  &.-k {
+    color: $k;
+  }
+}
+
+/* -----------------------------------------------
+    link
+------------------------------------------------*/
+a {
+  text-decoration: none;
+  transition: $transition;
+  color: $k;
+}
+
+.pc a:hover {
+  text-decoration: none;
+}
+
+/*  a img
+---------------------------------------------*/
+a img {
+  transition: $transition;
+}
+
+//PCで電話のa要素のカーソル表示をデフォルトに調整
+a[href^="tel:"] {
+  cursor: default;
+}
+
+/* ======= hover ======= */
+a[href^="tel:"]:hover img {
+  opacity: 1;
+}
+
+/*  .link - decoration underline
+---------------------------------------------*/
+a.link {
+  color: $c1;
+  text-decoration: underline;
+}
+
+.pc a.link:hover {
+  text-decoration: none;
+  color: $c1;
+}
+
+/* -----------------------------------------------
+    list - ul,ol
+------------------------------------------------*/

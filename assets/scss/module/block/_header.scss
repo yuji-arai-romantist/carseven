@@ -1,0 +1,482 @@
+/*==================================================================
+    .header
+===================================================================*/
+.header {
+  &>* {
+    transition: 0.6s all;
+  }
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: 0.6s all;
+  height: 60px;
+  position: fixed;
+  color: $w;
+  background-color: $c1;
+  border-bottom: 1px solid rgba($color: #000, $alpha: 0.1);
+  box-shadow: 0px 1px 0px rgba($color: #fff, $alpha: 0.1);
+  @include mq() {
+    padding: 10px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+  }
+  &-inner {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    padding: 10px 20px;
+    @include mq() {
+      padding: 10px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  &-logo {}
+  &-menu {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    .username {
+      margin-right: 20px;
+      i {
+        color: $c1;
+        background-color: $w;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-size: 1.6rem;
+        font-family: $font3;
+        display: inline-block;
+        margin-right: 10px;
+        text-align: center;
+        line-height: 30px;
+        font-style: normal;
+      }
+    }
+    .userbutton {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      li {
+        margin-right: 10px;
+        cursor: pointer;
+        position: relative;
+        &:last-child {
+          margin-right: 0;
+        }
+        a {
+          color: $w;
+          display: flex;
+          align-items: center;
+          i {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+  .user {
+    &-area {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+    }
+    &-name {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      padding: 10px 5px;
+      z-index: 2;
+      transition: $transition;
+      position: relative;
+      background-color: #1f2124;
+      .icon {
+        background-color: $c2;
+        color: $w;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        margin-right: 10px;
+        text-align: center;
+        font-size: 1rem;
+      }
+      .name {
+        font-size: 1.2rem;
+        white-space: nowrap;
+        line-height: 2;
+      }
+    }
+  }
+}
+
+
+
+
+.header-sub {
+  background-color: $w;
+  height: 40px;
+  box-shadow: 0px 1px 1px rgba($color: #000, $alpha: 0.1);
+  margin-top: 60px;
+  z-index: 50;
+  position: relative;
+  &-inner {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-menu {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+  }
+  .menubox {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    position: relative;
+    &:hover {
+      cursor: pointer;
+    }
+    .parent-item {
+      padding-right: 15px;
+      position: relative;
+      transition: $transition;
+      &::after {
+        content: '';
+        width: 5px;
+        height: 5px;
+        top: 50%;
+        right: 0px;
+        transform: translateY(-50%) rotate(135deg);
+        position: absolute;
+        border-top: 1px solid #333;
+        border-right: 1px solid #333;
+        transition: all 0.5s;
+      }
+      &:hover {
+        color: $c2;
+      }
+    }
+  }
+  .child {
+    position: absolute;
+    top: 40px;
+    opacity: 0;
+    visibility: hidden;
+    &.open {
+      opacity: 1;
+      visibility: visible;
+      transition: $transition;
+    }
+    background-color: $w;
+    li {
+      a {
+        padding: 0 15px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        background-image: url(/asset/img/common/icon-arrow-right01-white.svg);
+        background-position: right 10px center;
+        background-repeat: no-repeat;
+        background-size: 10px;
+        background-color: #4a5e71;
+        color: #fff;
+        min-width: 220px;
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+        position: relative;
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 1px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          background-color: rgba(0,0,0,0.2);
+        }
+        &:hover {
+          background-position: right 7px center;
+        }
+      }
+      &:last-child {
+        a {
+          border-bottom: none;
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.header-budget {
+  background-color: #d1cdcd;
+  height: 60px;
+  box-shadow: 0px 1px 1px rgba($color: #000, $alpha: 0.1);
+  margin-top: 1px;
+  z-index: 10;
+  position: relative;
+  &-inner {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    &::after {
+      content: '';
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: block;
+      background: linear-gradient(90deg, rgba(209,205,205,0) 0%, rgba(209,205,205,1) 80%);
+    }
+  }
+  &-menu {
+    overflow-x: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    padding-right: 100px;
+    padding-left: 20px;
+    li {
+      padding: 0 5px;
+      a {
+        border-radius: 15px;
+        font-size: 1.3rem;
+        white-space: nowrap;
+        background-color: $w;
+        border: 1px solid #a99f9f;
+        color: #685f5f;
+        &:hover, &.current {
+          background-color: #685f5f;
+          color: $w;
+        }
+      }
+    }
+  }
+}
+
+
+.displaysetting {
+  &-box {
+    display: none;
+    background-color: $w;
+    padding: 30px 0;
+    transform: translateY(-60px);
+    box-shadow: 0px 1px 0px rgba($color: #000, $alpha: 0.1);
+  }
+  &-inner {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+  &-btn {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    background-color: $c3;
+    color: $w;
+    height: 30px;
+    padding: 0 1em;
+    font-size: 1.3rem;
+    border-radius: 1px;
+    margin-left: 10px;
+    i {
+      margin-right: 5px;
+      background-image: url(/asset/img/common/icon-listitem-white.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 14px;
+      height: 14px;
+    }
+  }
+  &-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    .checkall {
+      display: none;
+      &.is-active {
+        display: flex;
+        align-items: center;
+      }
+      .checkbox {
+        margin-bottom: 0;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+
+/*==================================================================
+    .menu-trigger
+===================================================================*/
+.newchat-trigger,
+.newchat-trigger span,
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all 0.4s;
+}
+.menu-trigger {
+  width: 25px;
+  height: 16px;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  transition: $transition;
+  span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $w;
+    transition: $transition;
+    &:nth-of-type(1) {
+      top: 0;
+    }
+    &:nth-of-type(2) {
+      top: 7px;
+    }
+    &:nth-of-type(3) {
+      bottom: 0;
+    }
+  }
+  &.active {
+    span {
+      background-color: $w;
+      &:nth-of-type(1) {
+        top: 0;
+        -webkit-transform: translateY(7px) rotate(-315deg);
+        transform: translateY(7px) rotate(-315deg);
+      }
+      &:nth-of-type(2) {
+        opacity: 0;
+      }
+      &:nth-of-type(3) {
+        bottom: 0;
+        -webkit-transform: translateY(-7px) rotate(315deg);
+        transform: translateY(-7px) rotate(315deg);
+      }
+    }
+  }
+}
+
+.header-trigger {
+  width: 48px;
+  height: 48px;
+  background-color: #1f2124;
+  position: absolute;
+  top: 5px;
+  left: 0px;
+  z-index: 9999;
+  transition: $transition;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.active {
+    left: 250px;
+    transition: $transition;
+  }
+}
+
+.newchat-trigger {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 2;
+  span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $w;
+    transition: $transition;
+    &:nth-of-type(1) {
+      top: 0;
+    }
+    &:nth-of-type(2) {
+      top: 0px;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+/*==================================================================
+    .overlay
+===================================================================*/
+.overlay {
+  visibility: hidden;
+  opacity: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: $transition;
+  &.open {
+    visibility: visible;
+    opacity: 0.8;
+    z-index: 99;
+  }
+}
+
+#toast {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s ease-in-out;
+  background-color: rgba($color: #d40000, $alpha: 1);
+  padding: 15px 10px;
+  position: fixed;
+  border: 1px solid #d40000;
+  border-radius: 3px;
+  top: 10px;
+  right: 10px;
+  z-index: 200;
+  @include mq() {
+    top: 80px;
+    left: 50%;
+    right: unset;
+    transform: translateX(-50%);
+  }
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  p {
+    font-size: 1.3rem;
+  }
+}

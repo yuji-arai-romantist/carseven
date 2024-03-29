@@ -1,0 +1,117 @@
+/*==================================================================
+    modal
+===================================================================*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 100; //ベースz-index
+  background-color: rgba(0, 0, 0, 0.8);
+  &.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  &-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  &-close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    appearance: none;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 4rem;
+    line-height: 40px;
+    font-weight: 400;
+    &.-w {
+      color: $w;
+      top: 10px;
+    }
+  }
+  &-content {
+    position: relative;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+    background-color: #fff;
+    width: 100%;
+    max-height: calc(100vh - 8vw);
+    overflow-y: scroll;
+    padding: 40px 30px;
+    border-radius: 10px;
+  }
+  &-content-inner {
+    padding: 30px 0;
+    h3 {
+      line-height: 1.5;
+    }
+  }
+  &-upperbtnarea {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  &-bottomline {
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  &-heading {
+    margin: -40px -30px 0px;
+    background-color: #77808c;
+    color: $w;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    h3 {
+      padding: 20px 15px;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+
+
+}
+
+#perchase {
+  z-index: 103;
+  .modal {
+    &-content {
+      max-width: 600px;
+    }
+  }
+  h3 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+}
+
+
+
+.api-results {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+
+.api-loading {
+  display: none;
+  padding: 30px 0;
+  text-align: center;
+}

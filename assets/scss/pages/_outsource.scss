@@ -1,0 +1,40 @@
+#outsource {
+  background-color: #fbfbfb;
+}
+
+@keyframes userbox-fadein {
+  from {
+    opacity: 0;
+    transform: translateY(0px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-55px);
+  }
+}
+
+.handsontable {
+  &-wrapper {
+    &.inactive {
+      visibility: hidden;
+    }
+  }
+}
+
+// 見積・外注費の特殊ライン。設定を上書きする。
+.estimate-total {
+  margin-top: 20px;
+  flex-flow: row nowrap !important;
+  justify-content: flex-end;
+  .input-placeholder {
+    width: auto !important;
+  }
+  .input-style-basic {
+    width: 140px !important;
+  }
+  .input-style-basic:focus+.input-placeholder {
+    padding: 0 !important;
+    color: #989898 !important;
+  }
+}

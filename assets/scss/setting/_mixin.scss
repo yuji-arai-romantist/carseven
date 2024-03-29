@@ -1,0 +1,156 @@
+//==================================================================
+//	_mixn.scss mixin
+//==================================================================
+// -----------------------------------------------
+//  mediaquery
+//------------------------------------------------
+$breakpoint-sm: 390px !default; //iphone5など小さいスマホ用
+$breakpoint-md: 768px !default; //モバイル・タブレット縦/ノートPCの境界
+$breakpoint-tb: 991px !default; //タブレット横/ノートPCの境界
+$breakpoint-lg: 1180px !default; //ノートPC//フルHDの境界
+
+//PCファースト
+$breakpoints-pc: ("sm": "screen and (max-width: 390px)",
+  "md": "screen and (max-width: 768px)",
+  "tb": "screen and (max-width: 991px)",
+  "l": "screen and (max-width: 1100px)",
+  "lg": "screen and (max-width: 1280px)",
+  "xlg": "screen and (max-width: 1480px)",
+  "xxlg": "screen and (max-width: 1920px)",
+) !default;
+
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints-pc, $breakpoint)} {
+    @content;
+  }
+}
+//@include mq(lg) { // 引数を個別に指定 ※デフォルトはmd
+
+//モバイルファースト
+$breakpoints-mf: ("sm": "screen and (min-width: 391px)",
+  "md": "screen and (min-width: 769px)",
+  "tb": "screen and (min-width: 992px)",
+  "lg": "screen and (min-width: 1281px)",
+  "xlg": "screen and (min-width: 1481px)",
+  "xxlg": "screen and (min-width: 1921px)",
+) !default;
+
+@mixin mf($breakpoint: md) {
+  @media #{map-get($breakpoints-mf, $breakpoint)} {
+    @content;
+  }
+}
+
+//その他の指定方法
+@mixin sm {
+  @media screen and (max-width: $breakpoint-sm) {
+    @content;
+  }
+}
+@mixin md {
+  @media screen and (max-width: $breakpoint-md) {
+    @content;
+  }
+}
+@mixin tb {
+  @media screen and (max-width: $breakpoint-tb) {
+    @content;
+  }
+}
+@mixin lg {
+  @media screen and (max-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+// -----------------------------------------------
+//  font よく使用するフォントセット
+//------------------------------------------------
+@mixin font {
+  font-size: $fz;
+  color: $k;
+  font-family: $font1;
+  font-weight: 400;
+}
+
+//フォントサイズ：小
+@mixin fzS {
+  font-size: $fzS;
+  line-height: $lhS;
+  @include mq() {
+    font-size: $fzS--sp;
+    line-height: $lhS--sp;
+  }
+}
+//フォントサイズ：標準
+@mixin fz {
+  font-size: $fz;
+  line-height: $lh;
+  @include mq() {
+    font-size: $fz--sp;
+    line-height: $lh--sp;
+  }
+}
+//フォントサイズ：中
+@mixin fzM {
+  font-size: $fzM;
+  line-height: $lhM;
+  @include mq() {
+    font-size: $fzM--sp;
+    line-height: $lhM--sp;
+  }
+}
+//フォントサイズ：大
+@mixin fzL {
+  font-size: $fzL;
+  line-height: $lhL;
+  @include mq() {
+    font-size: $fzL--sp;
+    line-height: $lhL--sp;
+  }
+}
+
+//fontawesome
+@mixin fontawesome {
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  font-weight: 900;
+}
+// -----------------------------------------------
+//  content
+//------------------------------------------------
+@mixin content {
+  content: "";
+  display: block;
+  position: absolute;
+}
+// -----------------------------------------------
+//  position center
+//------------------------------------------------
+@mixin center {
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+// -----------------------------------------------
+//  position vertical
+//------------------------------------------------
+@mixin vertical {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin redhat {
+  font-family: $font2;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+@mixin redhatb {
+  font-family: $font2;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}

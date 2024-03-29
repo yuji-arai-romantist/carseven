@@ -1,0 +1,266 @@
+/*==================================================================
+    .grandNav
+===================================================================*/
+.grandNav {
+  width: 100%;
+  height: 100%;
+  color: $w;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+  transition: $transition;
+  // background-image: url(../img/common/bg-footer.jpg);
+  background-position: top center;
+  background-size: cover;
+  &.open {
+    z-index: 999;
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;
+  }
+  .trigger {
+    position: absolute;
+    right: 0;
+    top: 0;
+    @include mq(tb){
+      width: 80px;
+    }
+    @include mq(){
+      width: 60px;
+    }
+  }
+  .container {
+    height: 100%;
+  }
+  &-inner {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    max-width: 1100px;
+    margin: 0px auto;
+    padding: 0px 60px;
+    @include mq(){
+      padding: 0px 5vw;
+    }
+  }
+  &-upper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 60px;
+    padding-top: 100px;
+    margin: 0px auto;
+    @include mq(tb){
+      padding: 70px 0px;
+      flex-flow: column-reverse;
+      align-items: flex-start;
+      justify-content: flex-end;
+      height: auto;
+    }
+  }
+  &-bottom {
+    position: absolute;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    right: 0px;
+    bottom: 20px;
+    @include mq(tb){
+      position: relative;
+      right:unset ;
+      bottom: unset;
+      margin-bottom: 30px;
+      justify-content: flex-start;
+    }
+    @include mq(){
+      flex-flow: column;
+      align-items: flex-start;
+    }
+    small {
+      font-size: 1rem;
+      color: $g1;
+      transform: translateY(-2px);
+      padding-left: 20px;
+      @include mq(){
+        transform: none;
+        padding-left: 0;
+      }
+    }
+    ul {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      @include mq(){
+        flex-flow: column;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+      }
+      li {
+        padding: 0px 15px 0 0;
+        @include mq(){
+          padding: 0;
+          margin-bottom: 15px;
+        }
+        a {
+          color: $g1;
+          position: relative;
+          padding-bottom: 5px;
+          display: block;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  &-list {
+    width: 100%;
+  }
+  &-logo {
+    width: 300px;
+    @include mq(tb){
+      text-align: left;
+      margin-bottom: 80px;
+    }
+    @include mq(){
+      text-align: left;
+      margin-bottom: 50px;
+    }
+    .logo {
+      margin-bottom: 15px;
+      width: 100%;
+      @include mq(){
+        img {
+          width: 200px;
+        }
+      }
+    }
+    p {
+      font-size: 1.1rem;
+      span {
+        display: block;
+        font-size: 1rem;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &-upper {
+    .main {
+      width: calc(100% - 300px);
+      @include mq(tb){
+        width: 100%;
+      }
+      &-list {
+      }
+      .item {
+        margin-bottom: 50px;
+        @include mq(tb){
+          margin-bottom: 40px;
+        }
+        @include mq(){
+          margin-bottom: 20px;
+        }
+        a {
+          display: inline-block;
+          font-size: 1.5rem;
+          line-height: 1.6;
+          color: $w;
+          @include mq(tb){
+            font-size: 1.4rem;
+          }
+          em {
+            font-family: $font2;
+            line-height: 1;
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            @include mq(){
+              font-size: 1.6rem;
+            }
+          }
+          @include mq() {
+            display: block;
+            height: 100%;
+            width: 100%;
+            line-height: 44px;
+            padding: 0px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3);
+          }
+          &:hover {
+            opacity: 0.6;
+          }
+          &.blank {
+            padding-right: 20px;
+            background-image: url(../img/common/icon_blank.svg);
+            background-repeat: no-repeat;
+            background-position: 100% 50%;
+            @include mq() {
+              background-position: right 20px top 50%;
+            }
+          }
+        }
+        // &.-products {
+        //   ul {
+        //     display: flex;
+        //     flex-flow: row wrap;
+        //     align-items: flex-start;
+        //     margin: 0px -15px;
+        //     li {
+        //       width: calc(100% / 3);
+        //       max-width: 160px;
+        //       padding: 0 15px;
+        //       a {
+        //         display: block;
+        //       }
+        //       dt {
+        //         margin-bottom: 10px;
+        //       }
+        //       dd {
+        //         text-align: center;
+        //         font-size: 1.3rem;
+        //         span {
+        //           font-size: 1rem;
+        //           display: block;
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
+        &.-adj {
+          margin-bottom: 30px;
+          @include mq(){
+            margin-bottom: 15px;
+          }
+        }
+        &.-products {
+          padding-left: 15px;
+          li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 20px;
+            &::before {
+              content: '';
+              width: 25px;
+              height: 1px;
+              background-color: $g1;
+              display: block;
+              position: absolute;
+              top: 50%;
+              left: 0;
+            }
+            a {
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

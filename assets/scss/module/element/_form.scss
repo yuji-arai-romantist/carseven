@@ -1,0 +1,318 @@
+/*==================================================================
+    form
+===================================================================*/
+
+/*  autofill
+---------------------------------------------*/
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px rgb(250, 250, 250) inset;
+}
+
+/*  hover
+---------------------------------------------*/
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  transition: $transition;
+  // font-size: 1.5rem;
+}
+
+.pc input[type="text"]:hover,
+.pc input[type="tel"]:hover,
+.pc input[type="email"]:hover,
+.pc input[type="password"]:hover,
+.pc select:hover,
+.pc textarea:hover {
+  border: 1px solid $c1;
+  background-color: #fff;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+/*  focus
+---------------------------------------------*/
+input:focus,
+select:focus,
+textarea:focus {
+  color: #000000;
+}
+// input[type="text"]:focus,
+// input[type="tel"]:focus,
+// input[type="email"]:focus,
+// input[type="password"]:focus,
+// select:focus,
+// textarea:focus {
+//   border: 1px solid $k;
+// }
+input[type="button"]:focus,
+input[type="submit"]:focus,
+button[type="submit"]:focus,
+input[type="file"],
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+button:focus {
+  outline: none;
+}
+
+/*  input.short
+---------------------------------------------*/
+input.short,
+select.short,
+textarea.short {
+  width: 40%;
+}
+@include mq() {
+  input.short,
+  select.short,
+  textarea.short {
+    width: 100%;
+  }
+}
+
+/*  must 必須項目の※
+---------------------------------------------*/
+.must {
+  color: $red;
+  font-size: 80%;
+  vertical-align: top;
+  position: relative;
+  top: -0.4em;
+  right: -0.2rem;
+}
+
+/*  button submit
+---------------------------------------------*/
+input[type="button"],
+input[type="submit"] {}
+
+/* ======= hover ======= */
+.pc input[type="button"]:hover,
+.pc input[type="submit"]:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+/*  checkbox radio
+---------------------------------------------*/
+/* ======= common ======= */
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+  transition: 0s;
+  width: 20px;
+  height: 20px;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid #ccc !important;
+}
+// label.checkbox,
+// label.radio {
+//   padding-left: 0.7em;
+//   margin-bottom: 0.5em;
+//   position: relative;
+//   display: inline-block;
+//   cursor: pointer;
+//   transition: 0s;
+// }
+// label.checkbox input,
+// label.radio input {
+//   visibility: hidden;
+//   opacity: 0;
+//   margin: 0;
+//   height: inherit;
+// }
+
+// /* ======= checkbox ======= */
+// label.checkbox::before,
+// label.checkbox::after {
+//   @include content;
+//   transition: $transition;
+// }
+// label.checkbox::before {
+//   top: 50%;
+//   transform: translateY(-50%);
+//   left: 0;
+//   width: 16px;
+//   height: 16px;
+//   background: #fff;
+//   border: 1px solid #ccc;
+//   border-radius: $bdrs1;
+// }
+// label.checkbox.-checked::before {
+//   background: $c2;
+//   border: 1px solid $c2;
+// }
+// label.checkbox.-checked::after {
+//   position: absolute;
+//   content: "";
+//   display: block;
+//   top: 4px;
+//   left: 3px;
+//   width: 10px;
+//   height: 5px;
+//   border-left: 2px solid #fff;
+//   border-bottom: 2px solid #fff;
+//   -webkit-transform: rotate(-45deg);
+//   transform: rotate(-45deg);
+// }
+
+// /* ======= radio ======= */
+// label.radio::before,
+// label.radio::after {
+//   @include content;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   transition: 0s;
+//   @include mq() {
+//     transition: 0s; //スマホではlabelのmbで一瞬ズレるように見えるので
+//   }
+// }
+// label.radio::before {
+//   left: 0;
+//   width: 18px;
+//   height: 18px;
+//   background: #fff;
+//   border: 1px solid #bcc2ba;
+//   border-radius: 100%;
+// }
+// label.radio::after {
+//   opacity: 0;
+//   transform: translateY(-50%) scale(0.7);
+// }
+// label.radio.-checked::after {
+//   opacity: 1;
+//   transform: translateY(-50%) scale(1);
+//   left: 3px;
+//   width: 12px;
+//   height: 12px;
+//   background: $c2;
+//   border-radius: 100%;
+// }
+
+/*  input file
+---------------------------------------------*/
+// input[type="file"] {
+//   -webkit-appearance: none;
+//   display: none;
+// }
+label.file {
+  display: inline-block;
+  color: $w;
+  font-size: $fz;
+  background-color: $c1;
+  padding: 1rem 2.5rem;
+  margin-bottom: 0.8rem;
+  border-radius: $bdrs1;
+  cursor: pointer;
+  transition: $transition;
+}
+/* ======= hover ======= */
+.pc label.file:hover {
+  background-color: $c2;
+}
+
+/*  select
+---------------------------------------------*/
+select {
+  -webkit-appearance: none;
+  width: 100%;
+  position: relative;
+  height: 40px;
+  padding-left: 1rem;
+  border-radius: $bdrs1;
+  cursor: pointer;
+  line-height: 1;
+}
+
+//selectは疑似要素NGなのでlabelにafter
+label.select {
+  position: relative;
+  display: block;
+}
+label.select::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+}
+label.select::after {
+  position: absolute;
+  content: "";
+  display: block;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+  border-top: 6px solid $k;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  font-size: 1.4rem;
+  pointer-events: none;
+}
+
+/*
+表示確認済みPC : chrome,safari,edge,firefoxはアップデードでselectの疑似要素がOKになりました。
+※ IE11~9はデフォルト表示
+確認済みSP : 【ios12】 Safari/chrome 【android7】chrome
+*/
+
+/* IE9以下はデフォルト */
+label.select::after,
+label.select::before {
+  display: none\9;
+}
+/* IE10,11はデフォルト */
+@media all and (-ms-high-contrast: none) {
+  label.select::after,
+  label.select::before {
+    display: none;
+  }
+}
+@supports (-ms-ime-align: auto) {
+  // Edge のみ適用される
+}
+
+/* ======= sp ======= */
+@include mq() {
+  label.select::after {
+    right: 10px;
+    border-top: 5px solid $k;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    font-size: 1.4rem;
+  }
+}
+
+
+label.select {
+  select {
+    padding-right: 50px;
+    &.dark {
+      background-color: $c1;
+      color: $w;
+      outline: none !important;
+    }
+    &.readonly {
+      pointer-events: none;
+      background-color: #f1f1f1;
+    }
+  }
+  &.dark {
+    &::after {
+      border-top: 6px solid $w !important;
+    }
+  }
+}
+

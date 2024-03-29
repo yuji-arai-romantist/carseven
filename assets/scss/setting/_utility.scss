@@ -1,0 +1,251 @@
+/*==================================================================
+    utility
+===================================================================*/
+/* ------------------------------------------------------------------
+  Visual utility
+-------------------------------------------------------------------*/
+/*  display
+---------------------------------------------*/
+.noDisplay { display:none!important; }
+.block { display:block !important; }
+.inline { display:inline !important; }
+.inlineBlock { display:inline-block !important; }
+
+/* ======= display none ======= */
+@include mf() {
+  .pcNone {
+      display: none !important;
+  }
+}
+@include mq() {
+  .spNone {
+      display: none !important;
+  }
+}
+@media screen and (min-width:769px) and ( max-width:991px) {
+  .tbNone {
+    display: none !important;
+  }
+}
+
+/*  position
+---------------------------------------------*/
+.static { position:static !important; }
+.relative { position:relative !important; }
+.absolute { position:absolute !important; }
+.fixed { position:fixed !important; }
+
+/*  float
+---------------------------------------------*/
+.leftBox { float:left; }
+.rightBox { float:right; }
+.nofloat { float:none !important; }
+
+.clearfix { zoom:1; }
+.clearfix:after {
+  display:block;
+  clear:both;
+  content:"";
+}
+.clear { clear:both !important; }
+ /* IE6 */
+* html .clearfix {zoom: 1;}
+/* IE7 */
+*:first-child+html .clearfix {zoom: 1;}
+
+/*  hover
+---------------------------------------------*/
+.hover:hover {
+  filter:alpha(opacity=70);
+  -moz-opacity:0.7;
+  -khtml-opacity: 0.7;
+  opacity: 0.7;
+}
+
+/*  .scrollWSp SP時に横幅からはみ出す要素(tableなど)に囲って使用
+---------------------------------------------*/
+@include mq() {
+    .scrollWSp {
+        overflow: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch; //スマホでスクロール時に表示
+    }
+}
+
+/* .firstload ※初回読み込み時のCSSトランジション防止
+------------------------------------------------*/
+.firstload {
+    transition:0s !important;
+}
+
+/* ------------------------------------------------------------------
+  width utility
+-------------------------------------------------------------------*/
+$widthClass: true !default; //true false で切り替え
+$widthEnd : 10 !default;
+
+@if $widthClass {
+    @for $i from 1 through $widthEnd {
+        .w#{$i * 10} {
+            width: 10% * $i !important;
+        }
+    }
+}
+
+/* ------------------------------------------------------------------
+  BoxModel utility
+-------------------------------------------------------------------*/
+$spaceClass: true !default; //true false で切り替え
+$endValue : 15 !default;
+
+@if $spaceClass {
+    @for $i from 0 through $endValue {
+        .mt#{$i * 5} {
+            margin-top: 5px * $i !important;
+        }
+        .mb#{$i * 5} {
+            margin-bottom: 5px * $i !important;
+        }
+        .mr#{$i * 5} {
+            margin-right: 5px * $i !important;
+        }
+        .ml#{$i * 5} {
+            margin-left: 5px * $i !important;
+        }
+        .pt#{$i * 5} {
+            padding-top: 5px * $i !important;
+        }
+        .pb#{$i * 5} {
+            padding-bottom: 5px * $i !important;
+        }
+        .pr#{$i * 5} {
+            padding-right: 5px * $i !important;
+        }
+        .pl#{$i * 5} {
+            padding-left: 5px * $i !important;
+        }
+    }
+}
+
+/* ------------------------------------------------------------------
+  border utility
+-------------------------------------------------------------------*/
+.btNone { border-top:none !important; }
+.brNone { border-right:none !important; }
+.bbNone { border-bottom:none !important; }
+.blNone { border-left:none !important; }
+
+
+/* ------------------------------------------------------------------
+  Text utiity
+-------------------------------------------------------------------*/
+.bold { font-weight:bold !important; }
+.italic { font-style:italic !important; }
+.note {
+    color: $g1;
+    margin-left:1.0em;
+    text-indent:-1.0em;
+}
+.underline { text-decoration:underline !important; }
+.textNoLine { text-decoration:none !important; }
+
+/*  font-family
+---------------------------------------------*/
+.font1 { font-family: $font1 !important;}
+.font2 { font-family: $font2 !important;}
+
+/*  font-size+line-height
+---------------------------------------------*/
+.fzS {@include fzS;}
+.fz  {@include fz;}
+.fzM {@include fzM;}
+.fzL {@include fzL;}
+
+/*  color
+---------------------------------------------*/
+.white { color:$w;}
+.black { color:$k;}
+
+.g1 {color:$g1;}
+.g2 {color:$g2;}
+.g3 {color:$g3;}
+.g4 {color:$g4;}
+.g5 {color:$g5;}
+.g6 {color:$g6;}
+
+.c1 {color:$c1;}
+.c2 {color:$c2;}
+.c3 {color:$c3;}
+.c4 {color:$c4;}
+.c5 {color:$c5;}
+.c6 {color:$c6;}
+
+.c-caution {color:$red;}
+
+/*  align
+---------------------------------------------*/
+.text-middle { vertical-align:middle !important; }
+.text-center { text-align:center !important; }
+.text-left { text-align:left !important; }
+.text-right { text-align:right !important; }
+
+/* font-size
+---------------------------------------------*/
+.fz {
+    font-size: $fz;
+}
+.fz--s {
+    font-size: $fzS;
+    line-height: $lhS;
+}
+.fz--l {
+    font-size: $fzL;
+    line-height: $lhL;
+}
+
+
+$fzClass: true !default; //true false で切り替え
+$fzEnd : 30 !default;
+
+@if $fzClass {
+    @for $i from 8 through $fzEnd {
+        .fz#{$i * 1} {
+            font-size: 0.1rem * $i !important;
+        }
+    }
+}
+
+
+.flex {
+  display: flex;
+  &.align-center {
+    align-items: center;
+  }
+  &.justify-center {
+    justify-content: center;
+  }
+  &.between {
+    justify-content: space-between;
+  }
+  &.end {
+    justify-content: flex-end;
+  }
+  &.start {
+    justify-content: flex-start;
+  }
+
+  &.wrap {
+    flex-flow: row wrap;
+  }
+  &.nowrap {
+    flex-flow: row nowrap;
+  }
+  &.column {
+    flex-flow: column;
+    &-sp {
+      @include mq(tb){
+        flex-flow: column;
+      }
+    }
+  }
+}

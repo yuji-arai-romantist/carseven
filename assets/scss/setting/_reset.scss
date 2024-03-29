@@ -1,0 +1,318 @@
+/*==================================================================
+    reset
+===================================================================*/
+html {
+  overflow-x: hidden;
+  font-size: 62.5%; //fontsize 1.4rem
+}
+body {
+  // overflow-x: hidden;
+  min-width: 320px;
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  word-wrap: break-word;
+}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+object,
+iframe,
+pre,
+code,
+p,
+blockquote,
+form,
+fieldset,
+legend,
+table,
+th,
+td,
+caption,
+tbody,
+tfoot,
+thead,
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+audio,
+video,
+canvas {
+  margin: 0;
+  padding: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+menu {
+  display: block;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden] {
+  display: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+fieldset,
+img {
+  border: none;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+ul,
+ol,
+menu {
+  list-style: none;
+}
+caption,
+th {
+  text-align: left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+q:before,
+q:after {
+  content: "";
+}
+abbr,
+acronym {
+  border: none;
+  font-variant: normal;
+}
+sup {
+  vertical-align: super;
+  font-size: 1rem;
+  line-height: 1;
+}
+sub {
+  vertical-align: text-bottom;
+}
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+legend {
+  color: #000;
+}
+a img,
+map a {
+  border: none;
+}
+a:hover,
+a:active,
+a:focus {
+  outline: 0;
+}
+embed {
+  width: 100%;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+img,
+object,
+embed {
+  max-width: 100%;
+  height: auto;
+}
+object,
+embed {
+  height: 100%;
+}
+img {
+  vertical-align: bottom;
+  -ms-interpolation-mode: bicubic;
+  // -webkit-touch-callout:none; //iPhone・Androidでの画像保存禁止
+}
+div {
+  vertical-align: top;
+}
+
+strong {
+  font-weight: bold;
+}
+em {
+  font-style: normal;
+}
+
+select,
+input,
+button,
+textarea,
+button {
+  font: 99% arial, sans-serif;
+}
+
+pre,
+code,
+kbd,
+samp,
+tt {
+  font-family: monospace;
+  line-height: 1;
+}
+
+/*  touch
+---------------------------------------------*/
+a,
+img,
+button,
+input[type="button"],
+input[type="submit"],
+.touch-hover {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*  box-sizing
+---------------------------------------------*/
+* {
+  box-sizing: border-box;
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+/*  table
+---------------------------------------------*/
+table {
+  empty-cells: show;
+  font-size: inherit;
+  font: 100%;
+}
+
+/*  main
+---------------------------------------------*/
+/* IE10,11対策 main要素の高さと幅を認識させる */
+@media all and (-ms-high-contrast: none) {
+  main {
+    display: block;
+  }
+}
+
+/*  list
+---------------------------------------------*/
+li {
+  list-style: none;
+  line-height: 1;
+}
+
+/*  form
+---------------------------------------------*/
+input {
+  line-height: 1;
+}
+form img,
+input,
+select {
+  vertical-align: middle;
+}
+textarea {
+  resize: none;
+}
+select {
+  padding: 1px;
+}
+legend {
+  display: none;
+}
+
+input,
+select,
+textarea,
+button {
+  font-size: $fz;
+  vertical-align: middle;
+  color: $k;
+  height: auto;
+}
+textarea {
+  height: auto;
+}
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  -webkit-appearance: none;
+  font-size: $fzM;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-weight: normal;
+  border-radius: $bdrs1;
+  min-height:40px;
+  &:focus {
+    border: 1px solid $c2;
+  }
+}
+/* ======= outline ======= */
+input[type="email"],
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+  outline: none;
+}
+/* ======= label ======= */
+label {
+  margin-right: 1em;
+  line-height: 1;
+}

@@ -1,0 +1,69 @@
+.authgroup {
+  //ログイン〜パスワード系共通処理
+  &-area {
+    height: calc(100vh - 170px);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &-message {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+  }
+  &-btn {
+    margin-bottom: 10px;
+    &.rowwrap {
+      flex-flow: row wrap;
+    }
+    &.medium {
+      max-width: 300px;
+      width: 100%;
+      margin: 0px auto 10px;
+    }
+  }
+  .container {
+    max-width: 560px;
+    margin: 0px auto;
+    width: 100%;
+  }
+  .input-box-wrap {
+    margin-bottom: 20px;
+  }
+
+  //ログインページ
+  .loginarea {
+    &-inner {
+      padding: 30px;
+      background-color: $w;
+      box-shadow: 0px 0px 5px rgba($color: $k, $alpha: 0.1);
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        img {
+          width: 100px;
+        }
+        // span {
+        //   display: block;
+        //   margin: 20px 0 0;
+        //   font-size: 1.3rem;
+        // }
+      }
+    }
+  }
+}
+
+
+#auth.login {
+  background: linear-gradient(270deg, #dee3eb, #d5e8ec, #e8ecdf);
+  background-size: 400% 400%;
+  animation: logingrad 15s ease infinite;
+}
+
+@keyframes logingrad {
+  0%{background-position:0% 51%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 51%}
+}

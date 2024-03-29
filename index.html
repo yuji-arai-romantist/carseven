@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <title>無料査定｜車買取・車査定・中古車販売ならカーセブン</title>
+  <meta name="description" content="">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/lp.css?v2">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css?v2">
+</head>
+
+<body>
+  <div id="vue-app">
+    <header class="strHeader">
+      <div class="__inner">
+        <div class="__logo">
+          <a href="/">
+            <img src="./assets/img/header-logo.png" alt="ほかにない安心が、ある。 カーセブン">
+          </a>
+        </div>
+        <div class="__tel">
+          <a href="tel:0120-567-527">
+            <img src="./assets/img/header-tel.png" alt="祝祭日も査定OK！電話受付 9:00〜20:00 0120-567-527">
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="strMain">
+      <section class="secHero">
+        <div class="__inner">
+          <h1 class="__head">
+            <img class="pc" src="./assets/img/hero-img.png?v2" alt="最高値買取に挑戦中 カーセブンのカンタン愛車査定 累計売上台数500万台以上">
+            <img class="sp" src="./assets/img/hero-img_sp.png?v2" alt="">
+          </h1>
+        </div>
+      </section>
+      <section class="secAppli" id="formarea">
+        <div class="__inner">
+          <div class="boxAppli">
+            <h2 class="__head">
+              <span>
+                <img src="./assets/img/appli-head.png" alt="無料査定お申し込み">
+              </span>
+            </h2>
+            <form class="__content" action="/process" method="post">
+              <h2 class="headResist">
+                <img src="./assets/img/icon-resist.png" alt="" class="__icon car">
+                <span>お車についてご入力ください</span>
+              </h2>
+              <div class="boxAppli resist">
+                <div class="__content">
+                  <div class="__list-wrap">
+                    <dl class="__list">
+                      <dt>
+                        <span class="iconReq">必須</span>メーカー名
+                      </dt>
+                      <dd class="">
+                        <div @click="showModal('maker_mei')">
+                          <select name="maker_mei" style="pointer-events: none;" v-model="selectedValues['maker_mei']">
+                            <option v-for="(v, i) in cars" :key="i" :value="v.value">
+                              [[ v.brand ]]
+                            </option>
+                          </select>
+                        </div>
+                        <div class="errorText"></div>
+                      </dd>
+                      <dt>
+                        <span class="iconReq">必須</span>車種名
+                      </dt>
+                      <dd class="">
+                        <div @click="selectedValues['maker_mei'] ? showModal('shashu_mei') : () => {}">
+                          <select name="shashu_mei" style="pointer-events: none;" v-model="selectedValues['shashu_mei']" :disabled="!selectedValues['maker_mei']">
+                            <template v-if="selectedValues['maker_mei'] && selectedValues['shashu_mei']">
+                              <option v-for="(v, i) in getCars(selectedValues['maker_mei'])" :value="v">
+                                [[ v ]]
+                              </option>
+                            </template>
+                            <template v-else>
+                              <option value="" selected="selected">車種名</option>
+                            </template>
+                          </select>
+                        </div>
+                        <div class="errorText"></div>
+                      </dd>
+                    </dl>
+                    <dl class="__list">
+                      <dt>
+                        <span class="iconReq">必須</span>年式
+                      </dt>
+                      <dd class="">
+                        <div @click="showModal('nenshiki')">
+                          <select name="nenshiki" style="pointer-events: none;" v-model="selectedValues['nenshiki']">
+                            <option v-for="(v, i) in modelYears" :key="i" :value="v.value">
+                              [[ v.label ]]
+                            </option>
+                          </select>
+                        </div>
+                        <div class="errorText"></div>
+                      </dd>
+                      <dt>
+                        <span class="iconReq">必須</span>走行距離
+                      </dt>
+                      <dd class="">
+                        <div @click="showModal('sokokyori')">
+                          <select name="sokokyori" style="pointer-events: none;" v-model="selectedValues['sokokyori']">
+                            <option v-for="(v, i) in distances" :key="i" :value="v.value">
+                              [[ v.label ]]
+                            </option>
+                          </select>
+                        </div>
+                        <div class="errorText"></div>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+              <h2 class="headResist">
+                <img src="./assets/img/icon-resist-2.png" alt="" class="__icon user">
+                <span>お客様についてご入力ください</span>
+              </h2>
+              <dl class="listForm">
+                <dt>
+                  <span class="iconReq">必須</span>氏名ひらがな
+                </dt>
+                <dd class="">
+                  <input class="inutText" placeholder="例）おおさきたろう" maxlength="512" name="shimei" type="text">
+                  <div class="errorText"></div>
+                </dd>
+                <dt>
+                  <span class="iconReq">必須</span>郵便番号
+                </dt>
+                <dd class="">
+                  <input class="inutText zip" placeholder="例）1410032" maxlength="8" name="zip_code" type="text">
+                  <div class="errorText"></div>
+                </dd>
+                <dt>
+                  <span class="iconReq">必須</span>住所
+                </dt>
+                <dd class="">
+                  <input class="inutText address" placeholder="例）東京都品川区大崎2-11-1 大崎ウィズタワー23階" maxlength="1024" name="address" type="text">
+                  <div class="errorText"></div>
+                </dd>
+                <dt>
+                  <span class="iconReq">必須</span>メールアドレス
+                </dt>
+                <dd class="">
+                  <input class="autocomp inutText" placeholder="例）mail@carseven.co.jp" maxlength="512" name="customer_mail" type="email">
+                  <div class="errorText"></div>
+                </dd>
+                <dt>
+                  <span class="iconReq">必須</span>電話番号
+                </dt>
+                <dd class="">
+                  <input class="inutText tel" placeholder="例）03" maxlength="5" name="tel1" type="text">―
+                  <input class="inutText tel" placeholder="5436" maxlength="4" name="tel2" type="text">-
+                  <input class="inutText tel" placeholder="7735" maxlength="4" name="tel3" type="text">
+                  <div class="errorText"></div>
+                  <div class="errorText"></div>
+                  <div class="errorText"></div>
+                </dd>
+              </dl>
+              <div class="boxBorder2 ">
+                <p>個⼈情報の取り扱いについては
+                  <a href="https://www.carseven.co.jp/site/privacy" target="_blank">コチラ</a>
+                </p>
+                <div class="formCheck">
+                  <label>
+                    <input class="inputCheck" name="personal_info_agreement" type="checkbox" value="true">
+                    <span>個人情報の取り扱いについて同意する</span>
+                  </label>
+                </div>
+                <div class="errorText" style="color:#f00"></div>
+              </div>
+              <p class="txtSmall" style="text-align: center;">
+                <b>カーセブンの店舗展開の都合上、エリアにより対応しかねる場合がございます。
+                  <br>対応の可否は、返信されるメールにてご確認をお願いいたします。
+                </b>
+              </p>
+              <div class="__agree ">
+                <label>
+                  <input class="__agreeCheck" name="all_info_agreement" type="checkbox" value="true">
+                  <span>入力した内容に同意して送信</span>
+                </label>
+                <div class="errorText" style="color:#f00"></div>
+              </div>
+              <div class="__submit">
+                <button type="submit">
+                  <img src="./assets/img/regist-btn.png" alt="無料査定お申し込み">
+                </button>
+              </div>
+              <div class="txtContact">
+                <div class="__tel">
+                  <span class="__icon">お電話でも受付中</span>
+                  <a href="tel:0120-567-527">
+                    <img src="./assets/img/appli-tel.png" alt="0120-567-527">
+                  </a>
+                </div>
+                <div class="__notes">※電話受付時間 9:00〜22:00 祝祭日も査定OK！</div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="secPromise">
+        <div class="__inner">
+          <div class="__head">
+            <h2>
+              <img src="" alt="5つの買取安心宣言!">
+            </h2>
+            <p>
+              カーセブンで愛車を査定いただきたい理由
+            </p>
+          </div>
+          <ol class="__list">
+            <li>
+              <div class="__item">
+                <div class="__image">
+                  <img src="" alt="">
+                </div>
+                <div class="__text">
+                  <h3>
+                    ご契約金の半額を当日中に前払いします
+                  </h3>
+                  <p>
+                    <strong>
+                      車買取契約をしたら当日中にお金をもらえるのは当たり前と思ってるかもしれませんが…
+                    </strong>
+                    車買取ではお金の振込は平均して2営業日～7営業日ほどかかります。カーセブンは、条件もありますが契約金の半額を当日中に前払いする宣言を出させていただいています。<br>
+                    それでも減額交渉をされたという方は、カーセブンホットラインへご相談ください。
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="__item">
+                <div class="__image">
+                  <img src="" alt="">
+                </div>
+                <div class="__text">
+                  <h3>
+                    いかなる場合でもご契約後の減額は一切しません
+                  </h3>
+                  <p>
+                    <strong>
+                      ご契約後は一切減額されないものだと思っているかもしれませんが…
+                    </strong>
+                    買取契約後にがあったとして減額するのは、自動車構成協議会でもHPに掲載されるほどよくある事例です。安心宣言の説明をしたお客様のうち、86%の方が「ご契約後に減額を一切しないこと」を魅力的に感じています。<br>
+                    カーセブンは、お客様へのお約束して、ホームページでも宣言を出させていただいています。それでも減額交渉をされたという方は、カーセブンホットラインへご相談ください。
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="__item">
+                <div class="__image">
+                  <img src="" alt="">
+                </div>
+                <div class="__text">
+                  <h3>
+                    買取車両は当社名義に変更手続きいたします
+                  </h3>
+                  <p>
+                    <strong>
+                      車を売却する際、新たな所有者である買取業者の名義への変更手続きが必要です。
+                    </strong>
+                    この名義変更手続きはカーセブンが責任を持ち、車両を弊社名義に変更いたします。車の売却した後に「事故や違反に関する連絡が自分に届くのではないか」という心配は不要です。<br>
+                    もし名義変更手続きが行われない場合は、カーセブンホットラインへご相談ください。
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="__item">
+                <div class="__image">
+                  <img src="" alt="">
+                </div>
+                <div class="__text">
+                  <h3>
+                    キャンセルは7日間、電話1本で可能です
+                  </h3>
+                  <p>
+                    <strong>
+                      キャンセルが気軽にできるのは当たり前と思っているかもしれませんが…
+                    </strong>
+                    車の売却ではクーリング・オフが適用されないため、契約後にキャンセルできない業者も存在します。 しかし、カーセブンはご契約後でも7日間以内であれば、お電話1本で気軽にキャンセルできることをお約束しています。<br>
+                    それでも電話でキャンセル依頼したが断られた。という方は、カーセブンホットラインへご相談ください。
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="__item">
+                <figure class="__image">
+                  <img src="" alt="">
+                </figure>
+                <div class="__text">
+                  <h3>
+                    ご契約後でもキャンセル料は一切かかりません
+                  </h3>
+                  <p>
+                    <strong>
+                      車買取契約をしたら一定期間キャンセルできると思っているかもしれませんが…
+                    </strong>
+                    車の売却にはクーリング・オフが適用されないため、キャンセルができない業者や、キャンセル料が発生する場合も存在します。一般的なキャンセル料は車両本体価格の約1割程度といわれています。カーセブンは、ご契約後でも7日間までは、キャンセル料は一切かかりません。<br>
+                    それでもキャンセルを拒否されたり、キャンセル料を請求された場合は、カーセブンホットラインへご相談ください。
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="secAssessmentFlow">
+        <div class="__inner">
+          <h2 class="__head">
+            安心<em>4</em>ステップ!
+            <strong>無料お車査定の流れ</strong>
+          </h2>
+          <ol class="__list">
+            <li>
+              <div class="__item">
+                <figure>
+                  <img src="" alt="">
+                </figure>
+                <h3>
+                  フォームから無料査定
+                </h3>
+                <p>
+                  フォームからおクルマの概要をご入力の上、送信してください。カーセブンスタッフからお電話または、メールにてご連絡させていただきます。
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="__item">
+                <figure>
+                  <img src="" alt="">
+                </figure>
+                <h3>
+                  お車を査定
+                </h3>
+                <p>
+                  お電話又はメールにてお客様と相談の上、訪問またはご来店にて実際にお車を確認し、正確な査定額を提示致します。
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="__item">
+                <figure>
+                  <img src="" alt="">
+                </figure>
+                <h3>
+                  ご成約
+                </h3>
+                <p>
+                  査定金額にご納得いただけた場合、ご売却となります。
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="__item">
+                <figure>
+                  <img src="" alt="">
+                </figure>
+                <h3>
+                  ポイント希望の方へ<br>
+                  各種ポイントの付与
+                </h3>
+                <p>
+                  ポイント付与の受付が完了！<br>
+                  翌々月までにポイントが付与されます。
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="secReson">
+        <div class="__inner">
+          <h2 class="__head">
+            <em>高額査定</em>には理由があります
+          </h2>
+          <ol class="__list">
+            <li>
+              <div class="__item">
+                <figure class="__image">
+                  <img src="" alt="">
+                </figure>
+                <div class="__text">
+                  <h3>
+                    行商従業者証の提示
+                  </h3>
+                  <p>
+                    テキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいります
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="__item">
+                <figure class="__image">
+                  <img src="" alt="">
+                </figure>
+                <div class="__text">
+                  <h3>
+                    丁寧な査定
+                  </h3>
+                  <p>
+                    テキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいります
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="__item">
+                <figure class="__image">
+                  <img src="" alt="">
+                </figure>
+                <div class="__text">
+                  <h3>
+                    明確な金額提示
+                  </h3>
+                  <p>
+                    テキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいります
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="__item">
+                <figure class="__image">
+                  <img src="" alt="">
+                </figure>
+                <div class="__text">
+                  <h3>
+                    高額査定
+                  </h3>
+                  <p>
+                    テキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいります
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="secFlow">
+        <div class="__inner">
+          <div class="__submit">
+            <a href="#formarea" style="text-align: center;" class="updown">
+              <img src="./assets/img/regist-btn-v2.png" alt="無料査定お申し込み">
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="secVoice">
+        <div class="__inner">
+          <h2 class="__head">
+            たくさんの<em>お客様の声</em>が寄せられています！
+          </h2>
+          <ul class="__list">
+            <li>
+              <div class="__item">
+                <figure class="__image">
+                  <img src="" alt="">
+                </figure>
+                <div class="__text">
+                  <h3>
+                    売り手に寄り添っていただき感謝！
+                  </h3>
+                  <p>
+                    ご担当いただいた山口様には売り手側に寄り添って対応をいただきました。私自身優柔不断なタイプですが、強制とかではなくこの条件ならこうとわかりやすくご案内いただき即決ができました。ありがとうございました。
+                  </p>
+                </div>
+                <div class="__profile">
+                  <figure class="__image">
+                    <img src="" alt="">
+                  </figure>
+                  <div class="__text">
+                    <p>N.A 様  40代  女性  東京都</p>
+                    <dl>
+                      <dt>車種</dt>
+                      <dd>メルセデスベンツ | メルセデスベンツ Cクラス SD C200 アバンギャルド AMGライン</dd>
+                      <dt>年式</dt>
+                      <dd>平成26年10月</dd>
+                      <dt>走行距離</dt>
+                      <dd>114,512</dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="secFaq">
+        <div class="__inner">
+          <h2 class="__head">
+            よくあるご質問
+          </h2>
+          <ol class="__list">
+            <li>
+              <p class="question">
+                車の査定には何分かかりますか？
+              </p>
+              <p class="answer">
+                20〜30分ほどかかります。
+              </p>
+              <p class="answer-desc">
+                テキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいりますテキストがはいります
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- <section class="secPromise">
+        <div class="__inner">
+          <h2 class="__head">
+            <img src="./assets/img/promise-head.png" alt="カーセブンだけのお約束 車買取 5つの「安心宣言」">
+          </h2>
+          <ul class="__list">
+            <li>
+              <img src="./assets/img/promise-img-1.png" alt="1.いかなる場合でもご契約後の減額は一切しません">
+            </li>
+            <li>
+              <img src="./assets/img/promise-img-2.png" alt="2.ご成約車両のお引き渡し⽇から7⽇間までキャンセルできます">
+            </li>
+            <li>
+              <img src="./assets/img/promise-img-3.png" alt="3.ご契約金の一部は当日中に前払いします ※5万円を上限に、ご契約金額の10%をお振込します。">
+            </li>
+            <li>
+              <img src="./assets/img/promise-img-4.png" alt="4.ご来店の必要はありません お電話1本でキャンセルできます">
+            </li>
+            <li>
+              <img src="./assets/img/promise-img-5.png" alt="5.ご契約後でもキャンセル料は一切かかりません">
+            </li>
+          </ul>
+          <div class="__image">
+            <img src="./assets/img/promise-img_sp.png" alt="">
+          </div>
+          <p class="__notes">ご契約内容や特殊なケースの場合、適用されない場合がございますので、詳しくは担当スタッフにご確認ください。</p>
+        </div>
+      </section> -->
+
+      <!-- <section class="secCm">
+        <div class="__inner">
+          <div class="boxCm">
+            <h2 class="__head">
+              <img src="./assets/img/cm-head.png" alt="CM公開中！">
+            </h2>
+            <div class="lytColumn col2">
+              <div class="__col">
+                <p class="__text">
+                  <img class="pc" src="./assets/img/cm-head-2.png" alt="カーセブンのCMに小倉優子さんが出演！">
+                  <img class="sp" src="./assets/img/cm-head-2_sp.png" alt="">
+                </p>
+              </div>
+              <div class="__col">
+                <div class="linkMovie">
+                  <div class="__iframe">
+                    <iframe width="300" height="169" src="https://www.youtube.com/embed/vD8BdmSF7yM?rel=0&amp;showinfo=0" frameborder="0"></iframe>
+                  </div>
+                  <div class="__title">「キャンセルOK」篇 15秒</div>
+                </div>
+              </div>
+              <div class="__col">
+                <div class="linkMovie">
+                  <div class="__iframe">
+                    <iframe width="300" height="169" src="https://www.youtube.com/embed/U7bDS3gS6ds?rel=0&amp;showinfo=0" frameborder="0"></iframe>
+                  </div>
+                  <div class="__title">「値引き交渉」篇 15秒</div>
+                </div>
+              </div>
+              <div class="__col">
+                <div class="linkMovie">
+                  <div class="__iframe">
+                    <iframe width="300" height="169" src="https://www.youtube.com/embed/MW_viHfFpko?rel=0&amp;showinfo=0" frameborder="0"></iframe>
+                  </div>
+                  <div class="__title">「前払い」篇 15秒</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- <section class="secFlow">
+        <div class="__inner">
+          <div class="__submit">
+            <a href="#formarea" style="text-align: center;" class="updown">
+              <img src="./assets/img/regist-btn-v2.png" alt="無料査定お申し込み">
+            </a>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- <section class="secVoice">
+        <div class="__inner">
+          <h2 class="__head">
+            <img src="./assets/img/voice-head.png" alt="ご利用者の声">
+          </h2>
+          <div class="boxVoice">
+            <div class="__image">
+              <img src="./assets/img/voice-img.jpg" alt="">
+            </div>
+            <div class="__title">
+              <span>担当の方が誠実なお人柄で、査定当日に売却を決めました！</span>
+            </div>
+            <p class="__text">担当の方の丁寧で熱心な対応、特に車を褒めてくださったことが嬉しく思いました。
+              <br>査定額はもちろんですが、担当の方の誠実で正直なお人柄も決め手となり、担当以外のスタッフさんの印象や綺麗なお店もとても好感が持てました。
+              <br>車を売り買いする機会は滅多にない私ですが、だからこそ安心して取引できて、お互いに笑顔になれる会社だと感じました。
+            </p>
+          </div>
+          <div class="boxVoice">
+            <div class="__image">
+              <img src="./assets/img/voice-img-2.jpg" alt="">
+            </div>
+            <div class="__title">
+              <span>ホームページの申し込みから折り返しの電話連絡、
+                <br>出張査定まで非常に迅速に対応して頂きました！
+              </span>
+            </div>
+            <p class="__text">初回問い合わせから2日間で納得いく金額が提示され、他社との比較もすることなくやり取りの時間も短縮でき、効率的に車を売却することが出来ました。
+              <br>周囲に購入や売却を検討する人がいれば貴社をおすすめしたいと思います。
+              <br>ありがとうございました！
+            </p>
+          </div>
+          <div class="boxVoice">
+            <div class="__image">
+              <img src="./assets/img/voice-img-3.jpg" alt="">
+            </div>
+            <div class="__title">
+              <span>説明が丁寧で、査定への自信も感じられました！</span>
+            </div>
+            <p class="__text">他にもう1社から査定してもらった後にカーセブンさんに査定してもらいました。
+              <br>説明が丁寧で「その場で査定額を提示した＝査定への自信がある」と感じ、私自身もここで決めようと思いました。
+              <br>また凹みキズのある車体でしたが、大事に乗って中は割と綺麗にしていた点と定期点検にもしっかり出していた点を評価して頂き「次に乗る人も嬉しいでしょう」と言ってくださったのも決めての一つです。
+            </p>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- <section class="secFlow">
+        <div class="__inner">
+          <div class="__submit">
+            <a href="#formarea" style="text-align: center;" class="updown">
+              <img src="./assets/img/regist-btn-v2.png" alt="無料査定お申し込み">
+            </a>
+          </div>
+        </div>
+      </section> -->
+      <!-- /.strMain -->
+
+    </main>
+    <div class="strFooter">
+      <div class="__inner">
+        <div class="__link">
+          <a href="https://www.carseven.co.jp/site/privacy" target="_blank">プライバシーポリシー</a>
+        </div>
+        <div class="__text">東京都公安委員会許可 第301020006737号</div>
+        <div class="__copy">
+          <small>© 2021 Car7Development.CO.,LTD</small>
+        </div>
+      </div>
+
+      <div class="fixednavi">
+        <div class="container -mid">
+        <ul>
+          <li><a href="#formarea"><i><img src="assets/img/icon-rightarrow01.svg" alt=""></i><span class="spNone">今すぐ</span>無料査定を申し込む</a></li>
+          <li><a href="tel:0120567527"><i><img src="assets/img/icon-phone01.svg" alt=""></i>電話で無料相談する</a></li>
+        </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- modal maker mei -->
+    <div class="modal" v-if="showModalName === 'maker_mei'" v-cloak>
+      <div class="__bg" @click="hideModal"></div>
+      <div class="__inner">
+        <div class="__head">
+          <p class="__title">メーカー選択</p>
+          <a class="__close" @click="hideModal"></a>
+        </div>
+        <div class="__list">
+          <ul>
+            <template v-for="(v, i) in cars" :key="i">
+              <li v-if="v.value">
+                <a href="javascript:void(0)" @click="setValues('maker_mei', v.value)">
+                  [[ v.brand ]]
+                </a>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal shashu mei -->
+    <div class="modal" v-if="showModalName === 'shashu_mei'" v-cloak>
+      <div class="__bg" @click="hideModal"></div>
+      <div class="__inner">
+        <div class="__head">
+          <p class="__title">車種選択</p>
+          <a class="__close" @click="hideModal"></a>
+        </div>
+        <div class="__list">
+          <ul>
+            <template v-for="(v, i) in getCars(selectedValues['maker_mei'])" :key="i">
+              <li v-if="v !== '車種名'">
+                <a href="javascript:void(0)" @click="setValues('shashu_mei', v)">
+                  [[ v ]]
+                </a>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal nenshiki -->
+    <div class="modal" v-if="showModalName === 'nenshiki'" v-cloak>
+      <div class="__bg" @click="hideModal"></div>
+      <div class="__inner">
+        <div class="__head">
+          <p class="__title">年式選択</p>
+          <a class="__close" @click="hideModal"></a>
+        </div>
+        <div class="__list">
+          <ul>
+            <template v-for="(v, i) in modelYears" :key="i">
+              <li v-if="v.value">
+                <a href="javascript:void(0)" @click="setValues('nenshiki', v.value)">
+                  [[ v.label ]]
+                </a>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal sokokyori -->
+    <div class="modal" v-if="showModalName === 'sokokyori'" v-cloak>
+      <div class="__bg" @click="hideModal"></div>
+      <div class="__inner">
+        <div class="__head">
+          <p class="__title">走行距離選択</p>
+          <a class="__close" @click="hideModal"></a>
+        </div>
+        <div class="__list">
+          <ul>
+            <template v-for="(v, i) in distances" :key="i">
+              <li v-if="v.value">
+                <a href="javascript:void(0)" @click="setValues('sokokyori', v.value)">
+                  [[ v.label ]]
+                </a>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2/dist/vue.global.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="./assets/js/zip2address.js"></script>
+  <script src="./assets/js/autocomp.js"></script>
+  <script src="./assets/js/run.js"></script>
+  <script src="./assets/js/main.js"></script>
+  <script>
+    $('button[type="submit"]').on('click', function() {
+      $(this).prop('disabled', true);
+      $(this).css({
+        'opacity': '.5',
+        'pointer-events': 'none',
+      });
+      $(this).closest('form').submit();
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      var formSubmitted = false;
+
+      // フォームの送信イベントを処理
+      $("form.__content").submit(function() {
+        formSubmitted = true;
+      });
+
+      // ページを離れる前に警告を表示
+      $(window).on('beforeunload', function() {
+        if (!formSubmitted) {
+          return 'このページを離れますか？';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

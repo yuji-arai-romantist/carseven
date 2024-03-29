@@ -1,0 +1,14 @@
+[
+  {"value": "", "label": "おおよそで結構です"},
+  {"value": "0～1万km", "label": "0～1万km"},
+  {"value": "1万km～2万km", "label": "1万km～2万km"},
+  {"value": "2万km～3万km", "label": "2万km～3万km"},
+  {"value": "3万km～4万km", "label": "3万km～4万km"},
+  {"value": "4万km～5万km", "label": "4万km～5万km"},
+  {"value": "5万km～6万km", "label": "5万km～6万km"},
+  {"value": "6万km～7万km", "label": "6万km～7万km"},
+  {"value": "7万km～8万km", "label": "7万km～8万km"},
+  {"value": "8万km～9万km", "label": "8万km～9万km"},
+  {"value": "9万km～10万km", "label": "9万km～10万km"},
+  {"value": "10万km以上", "label": "10万km以上"}
+]
